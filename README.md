@@ -6,7 +6,7 @@ Simulating 1D viscous Burgers' equation in python using finite differences, then
 # Visualizations
 
 <p align="center">
-  <img src="burgers_nx200-3D.png" alt="3D plot of burgers equation" width="85%">
+  <img src="burgers_nx200-3D.png" alt="3D plot of burgers equation" width="59%">
   <br>
   <em>Figure 1: 3D evolution of u(x,t) showing non linear wave steepening into a sharp viscous shock ν = 0.07.</em>
 </p>
@@ -14,12 +14,13 @@ Simulating 1D viscous Burgers' equation in python using finite differences, then
 <br>
 
 <p align="center">
-  <img src="burgers_nx200.png" alt="2D numerical vs analytical comparison" width="85%">
+  <img src="burgers_nx200.png" alt="2D numerical vs analytical comparison" width="59%">
   <br>
-  <em>Figure 2: Validation of the finite difference solver against the analytical solution via Cole-Hopf at t = t_final.</em>
+  <em>Figure 2: Validation of the finite difference solver against the analytical solution via Cole-Hopf. </em>
 </p>
 
----
+
+
 
 ## Overview
 
