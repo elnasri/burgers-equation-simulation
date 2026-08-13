@@ -1,5 +1,4 @@
 # 1D Viscous Burgers' Equation Simulation
-> **Note:** completed in March 2026.
 
 Simulating 1D viscous Burgers' equation in python using finite differences, then plotting it against the exact solution to see how well the math holds up.
 
