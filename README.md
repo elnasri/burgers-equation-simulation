@@ -37,23 +37,23 @@ Burgers' equation combines two main physics behaviors: non linear convection (wa
 * **Numerical Model:** I used a 1st order upwind scheme for the advection term $u \frac{\partial u}{\partial x}$ and a 2nd order central difference for the viscosity term $\nu \frac{\partial^2 u}{\partial x^2}$ with periodic boundaries.
 * **Cole-Hopf?** Non linear PDEs are unusually hard to solve analytically. So using cole-hopf transformation converts the burgers' into a linear heat equation, which happens to have a known exact solution!!. Then Using `sympy` to handle that transformation gives a clean ground truth solution to check the finite difference code against.
 
-## Grid Convergence Study
+
 ## Grid Convergence Study
 
 I Ran a 3 grid GCI check (N = 400, 200, 100) on the higher viscosity solver (`burgers_higher_viscosity_simulation.py`, ν = 0.5) to check if the solver is actually converging the way it should.
 
-​```
-Fine Mesh   (N1=400):  phi1 = 4.091412
-Medium Mesh (N2=200):  phi2 = 4.075574
-Coarse Mesh (N3=100):  phi3 = 4.046253
 
-Order of Convergence (p): 0.8854
-Extrapolated Limit:       4.110015
-Fine Grid GCI:          0.5684%
-​```
+| Mesh Level | Grid Size ($N$) | Solution ($\phi$) |
+| :--- | :--- | :--- |
+| **Fine ($N_1$)** | 400 | 4.091412 |
+| **Medium ($N_2$)** | 200 | 4.075574 |
+| **Coarse ($N_3$)** | 100 | 4.046253 |
 
-p ≈ 0.89, close to 1st order. Makes sense since advection is upwind (1st order), diffusion is central (2nd order), so the lower-order term dominates the overall error. GCI on the finest grid is under 1%.
-## Setup & Running
+* **Order of Convergence ($p$):** 0.8854
+* **Extrapolated Limit ($\phi_{\text{ext}}$):** 4.110015
+* **Fine Grid GCI ($GCI_{\text{fine}}$):** 0.5684%
+
+$p \approx 0.89$, close to 1st order. Makes sense since advection is upwind (1st order), diffusion is central (2nd order), so the lower-order term dominates the overall error. GCI on the finest grid is under 1%.## Setup & Running
 
 ```bash
 pip install numpy sympy matplotlib
