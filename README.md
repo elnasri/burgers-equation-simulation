@@ -4,14 +4,14 @@ Simulating 1D viscous Burgers' equation in python using finite differences, then
 
 # Visualizations
 
-<p align="left">
-  <img src="burgers_nu0.5_nx400.png" alt="3D plot of smooth burgers equation solution" width="58%">
+<p align="center">
+  <img src="burgers_nu0.5_nx400.png" alt="3D plot of smooth burgers equation solution" width="55%">
   <br>
   <em>Figure 1: A Smooth 3D surface plot of the Burgers' equation solution field u(x,t) for ν = 0.5 and Nx = 400.</em>
 </p>
 
 <p align="center">
-  <img src="burgers_nx200-3D.png" alt="3D plot of burgers equation" width="59%">
+  <img src="burgers_nx200-3D.png" alt="3D plot of burgers equation" width="55%">
   <br>
   <em>Figure 2: 3D evolution of u(x,t) showing non linear wave steepening into a sharp viscous shock ν = 0.07.</em>
 </p>
