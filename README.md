@@ -53,7 +53,9 @@ I Ran a 3 grid GCI check (N = 400, 200, 100) on the higher viscosity solver (`bu
 * **Extrapolated Limit ($\phi_{\text{ext}}$):** 4.110015
 * **Fine Grid GCI ($GCI_{\text{fine}}$):** 0.5684%
 
-$p \approx 0.89$, close to 1st order. Makes sense since advection is upwind (1st order), diffusion is central (2nd order), so the lower-order term dominates the overall error. GCI on the finest grid is under 1%.## Setup & Running
+$p \approx 0.89$, close to 1st order. Makes sense since advection is upwind (1st order), diffusion is central (2nd order), so the lower-order term dominates the overall error. GCI on the finest grid is under 1%.
+
+## Setup & Running
 
 ```bash
 pip install numpy sympy matplotlib
