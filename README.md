@@ -55,6 +55,8 @@ I Ran a 3 grid GCI check (N = 400, 200, 100) on the higher viscosity solver (`bu
 
 $p \approx 0.89$, close to 1st order. Makes sense since advection is upwind (1st order), diffusion is central (2nd order), so the lower-order term dominates the overall error. GCI on the finest grid is under 1%.
 
+Note: refinement ratios are ~2.005 and ~2.010 rather than exactly constant, since dx = 2π/(N-1); the deviation is quite small and not meaningfully enough affect p or GCI here
+
 ## Setup & Running
 
 ```bash
