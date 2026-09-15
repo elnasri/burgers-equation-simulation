@@ -1,3 +1,4 @@
+
 import numpy as np
 import sympy as sp
 import matplotlib.pyplot as plt
@@ -14,8 +15,8 @@ u_func = sp.lambdify((t_sym, x_sym, nu_sym), u_expr, modules="numpy")
 
 
 def solve_burgers(nx, nu_vis=0.5, t_final=0.5):
-    dx = 2 * np.pi / (nx - 1)
-    x_grid = np.linspace(0, 2 * np.pi, nx)
+    dx = 2 * np.pi / nx
+    x_grid = np.linspace(0, 2 * np.pi, nx, endpoint=False)
     u = np.array([u_func(0, x0, nu_vis) for x0 in x_grid])
 
     # dynamic time step 
@@ -32,21 +33,11 @@ def solve_burgers(nx, nu_vis=0.5, t_final=0.5):
 
     for _ in range(nt):
         u_old = u.copy()
-
-        # Interior update
-        u[1:-1] = (
-            u_old[1:-1]
-            - u_old[1:-1] * dt / dx * (u_old[1:-1] - u_old[:-2])
-            + nu_vis * dt / dx**2 * (u_old[2:] - 2 * u_old[1:-1] + u_old[:-2])
+        u = (
+            u_old
+            - u_old * dt / dx * (u_old - np.roll(u_old, 1))
+            + nu_vis * dt / dx**2 * (np.roll(u_old, -1) - 2 * u_old + np.roll(u_old, 1))
         )
-
-        # Periodic boundary 
-        u[0] = (
-            u_old[0]
-            - u_old[0] * dt / dx * (u_old[0] - u_old[-2])
-            + nu_vis * dt / dx**2 * (u_old[1] - 2 * u_old[0] + u_old[-2])
-        )
-        u[-1] = u[0]
         u_history.append(u.copy())
 
     u_history = np.array(u_history)
@@ -66,11 +57,11 @@ if __name__ == "__main__":
     results = [solve_burgers(n, nu_vis=nu_vis_target, t_final=t_end) for n in N]
     phi1, phi2, phi3 = [res[0] for res in results]
 
-    r21 = (N[0] - 1) / (N[1] - 1)
+    r = 2.0
     e21, e32 = phi2 - phi1, phi3 - phi2
-    p = abs(np.log(abs(e32 / e21)) / np.log(r21))
-    phi_ext = (r21**p * phi1 - phi2) / (r21**p - 1)
-    gci_fine = (1.25 * abs((phi1 - phi2) / phi1)) / (r21**p - 1)
+    p = abs(np.log(abs(e32 / e21)) / np.log(r))
+    phi_ext = (r**p * phi1 - phi2) / (r**p - 1)
+    gci_fine = (1.25 * abs((phi1 - phi2) / phi1)) / (r**p - 1)
 
     print(f"GCI Study (nu={nu_vis_target}): p={p:.4f}, Fine GCI={gci_fine*100:.4f}%")
 
@@ -91,5 +82,5 @@ if __name__ == "__main__":
     plt.savefig(f"burgers_nx{N[0]}.png", dpi=150, bbox_inches="tight")
     plt.show()
 
-    dx1 = 2 * np.pi / (N[0] - 1)
+    dx1 = 2 * np.pi / N[0]
     print(f"nx={N[0]}, nt={nt1}, dx={dx1:.4f}, dt={dt1:.4f}, nu={nu_vis_target:.4f}")
