@@ -47,19 +47,17 @@ Here, the solution variable $\phi$ represents the global velocity $L_2$ norm: $\
 
 | Mesh Level | Grid Size ($N$) | Solution ($\phi$) |
 | :--- | :--- | :--- |
-| **Fine ($N_1$)** | 400 | 4.091412 |
-| **Medium ($N_2$)** | 200 | 4.075574 |
-| **Coarse ($N_3$)** | 100 | 4.046253 |
+| **Fine ($N_1$)** | 400 | 4.094330 |
+| **Medium ($N_2$)** | 200 | 4.081411 |
+| **Coarse ($N_3$)** | 100 | 4.057673 |
 
-* **Order of Convergence ($p$):** 0.8854
-* **Extrapolated Limit ($\phi_{\text{ext}}$):** 4.110015
-* **Fine Grid GCI ($GCI_{\text{fine}}$):** 0.5684%
+* **Order of Convergence ($p$):** 0.8778
+* **Extrapolated Limit ($\phi_{\text{ext}}$):** 4.109753
+* **Fine Grid GCI ($GCI_{\text{fine}}$):** 0.4709%
 
-$p \approx 0.89$, close to 1st order. Makes sense since advection is upwind (1st order), diffusion is central (2nd order), so the lower-order term dominates the overall error. GCI on the finest grid is under 1%.
-
-Note: refinement ratios are ~2.005 and ~2.010 rather than exactly constant, since dx = 2π/(N-1); the deviation is quite small and not meaningfully enough to affect p or GCI here
-
-## Flow Regimes
+$p \approx 0.88$, close to 1st order. This matches theoretical expectations since advection uses a 1st-order upwind scheme while diffusion uses a 2nd-order central difference scheme, causing the lower-order advection error to dominate. The GCI on the finest grid is well under 1%.
+ 
+ ## Flow Regimes
 
 Varying viscosity ($\nu$) alters the balance between advection and diffusion, represented by the Reynolds number:
 
