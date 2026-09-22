@@ -32,11 +32,11 @@ Simulating 1D viscous Burgers' equation in python using finite differences, then
 
 
 
-Burgers' equation combines two main physics behaviors: non linear convection (wave steepening) and diffusion (smoothing out gradients). 
+Burgers' equation combines two main physical behaviors: nonlinear convection (the wave steepening) and diffusion (smoothing of gradient). Burgers' equation is classified as a parabolic PDE, and is solved here using finite differences
 
 * **Numerical Model:** Discretised using a 1st-order backward upwind scheme for advection ($u \frac{\partial u}{\partial x}$) and a 2nd-order central difference for diffusion ($\nu \frac{\partial^2 u}{\partial x^2}$) with periodic boundaries. Backward differencing is used because $u(x,t) > 0$ across the domain.
 
-* **Cole-Hopf?** Non linear PDEs are unusually hard to solve analytically. So using cole-hopf transformation converts the burgers' into a linear heat equation, which happens to have a known exact solution!!. Then Using `sympy` to handle that transformation gives a clean ground truth solution to check the finite difference code against.
+* **Analytical Validation via the Cole Hopf Transformation:** Non linear PDEs are unusually difficult to solve analytically. The Cole-Hopf transformation reduces the nonlinear Burgers' equation to the linear heat equation, which happens to have a known closed-form solution. Then using `sympy` to handle that transformation gives a clean ground truth solution to check the finite difference code against.
 
 
 ## Grid Convergence Study
